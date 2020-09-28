@@ -1,0 +1,27 @@
+Page Factory Locator  
+@FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[1]/div/div/div[1]/div/h3")
+WebElement PageHeader;
+    
+Constructor
+WebDriver driver = null;
+    public EndUserHomePage(WebDriver driver){
+        this.driver = driver;
+    }
+    
+Before method 
+@BeforeMethod
+void before(){
+    driver = new FirefoxDriver();
+    driver.get("http://enduser.connectco.de/");
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    System.out.println("Before method");
+}
+
+Init Factory class
+EndUserHomePage EndUserHome = PageFactory.initElements(driver, Pom_map.Pages.EndUserHomePage.class);
+
+Call Factory Class
+EndUserHome.FillVinTextFiled("1234");
+
+Assertions
+Assert.assertEquals("Schedule a service appointment",EndUserScheduleServiceAppointment.GetPageHeader(),"User is not in Schedule a service appointment page");
