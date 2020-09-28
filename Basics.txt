@@ -1,0 +1,49 @@
+Imports
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+
+Dependencys
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.3.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+Sample methods
+	@Test
+	void test_02() {
+		given()
+			.get("https://reqres.in/api/users?page=2")
+		.then()
+			.statusCode(200);		
+	}
+
+	@Test
+	void test_03() {
+		given()
+			.get("https://reqres.in/api/users?page=2")
+		.then()
+			.statusCode(200)
+			.body("data.id[1]", equalTo(8));	
+	}
+
+  @Test
+	public void test_1() {
+		given()
+			.get("https://reqres.in/api/users?page=2")
+		.then()
+			.statusCode(200)
+			.body("data.first_name",hasItems("Michael","Lindsay","ixa"));							
+	}
