@@ -1,6 +1,11 @@
 Page Factory Locator  
 @FindBy(how = How.XPATH,using = "//*[@id=\"root\"]/div/div[1]/div/div/div[1]/div/h3")
 WebElement PageHeader;
+
+Page factory method
+public void FillVinTextFiled(String text){
+        VinTextInput.sendKeys(text);
+    }
     
 Constructor
 WebDriver driver = null;
